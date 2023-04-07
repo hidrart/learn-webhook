@@ -23,7 +23,7 @@ app.get('/hook', (req, res) => {
 
 app.post('/hook', (req, res) => {
 	console.log(req.body);
-	res.send('This is a webhook!');
+	res.status(200).send('This is a webhook!');
 });
 
 app.listen(port, () => {
