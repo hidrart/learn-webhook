@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyparser from 'body-parser';
+import fs from 'fs';
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -22,7 +23,11 @@ app.get('/hook', (req, res) => {
 });
 
 app.post('/hook', (req, res) => {
-	console.log(req.body);
+	fs.writeFile('webhook.json', JSON.stringify(req.body), (err) => {
+		if (err) {
+			console.log(err);
+		}
+	});
 	res.status(200).send('This is a webhook!');
 });
 
